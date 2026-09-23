@@ -25,7 +25,9 @@ public final class PluginDescriptor {
         this.description = builder.description;
         this.minimumMinecraftVersion = builder.minimumMinecraftVersion;
         this.maximumMinecraftVersion = builder.maximumMinecraftVersion;
-        this.databaseModes = Collections.unmodifiableSet(EnumSet.copyOf(builder.databaseModes));
+        this.databaseModes = Collections.unmodifiableSet(builder.databaseModes.isEmpty()
+            ? EnumSet.noneOf(DatabaseMode.class)
+            : EnumSet.copyOf(builder.databaseModes));
         this.featureAreas = Collections.unmodifiableSet(EnumSet.copyOf(builder.featureAreas));
         this.commands = Collections.unmodifiableList(new ArrayList<String>(builder.commands));
         this.capabilities = Collections.unmodifiableList(new ArrayList<String>(builder.capabilities));

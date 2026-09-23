@@ -1,6 +1,7 @@
 package com.mcoin.skyblock.core.currency;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.math.BigDecimal;
@@ -63,7 +64,7 @@ class EconomyServiceTest {
             executor.submit(() -> {
                 ready.countDown();
                 try {
-                    start.await(5, TimeUnit.SECONDS);
+                    assertTrue(start.await(5, TimeUnit.SECONDS));
                     service.transfer(firstPlayer, secondPlayer, CurrencyType.MCOIN, BigDecimal.ONE);
                 } catch (InterruptedException exception) {
                     Thread.currentThread().interrupt();
@@ -72,10 +73,10 @@ class EconomyServiceTest {
             });
         }
 
-        ready.await(5, TimeUnit.SECONDS);
+        assertTrue(ready.await(5, TimeUnit.SECONDS));
         start.countDown();
         executor.shutdown();
-        executor.awaitTermination(5, TimeUnit.SECONDS);
+        assertTrue(executor.awaitTermination(5, TimeUnit.SECONDS));
 
         assertEquals(BigDecimal.ZERO, service.account(firstPlayer).getBalance(CurrencyType.MCOIN));
         assertEquals(new BigDecimal("10"), service.account(secondPlayer).getBalance(CurrencyType.MCOIN));

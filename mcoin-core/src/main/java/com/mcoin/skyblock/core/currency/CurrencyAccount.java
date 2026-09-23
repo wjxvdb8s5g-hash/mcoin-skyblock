@@ -1,6 +1,7 @@
 package com.mcoin.skyblock.core.currency;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
@@ -39,7 +40,7 @@ public final class CurrencyAccount {
     }
 
     public synchronized Map<CurrencyType, BigDecimal> balancesView() {
-        return new EnumMap<CurrencyType, BigDecimal>(balances);
+        return Collections.unmodifiableMap(new EnumMap<CurrencyType, BigDecimal>(balances));
     }
 
     private static CurrencyType requireType(final CurrencyType type) {
