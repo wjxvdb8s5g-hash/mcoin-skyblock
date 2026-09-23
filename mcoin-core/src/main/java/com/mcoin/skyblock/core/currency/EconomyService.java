@@ -29,6 +29,9 @@ public final class EconomyService {
     }
 
     public void transfer(final UUID fromPlayerId, final UUID toPlayerId, final CurrencyType type, final BigDecimal amount) {
+        if (Objects.requireNonNull(fromPlayerId, "fromPlayerId").equals(Objects.requireNonNull(toPlayerId, "toPlayerId"))) {
+            throw new IllegalArgumentException("source and destination accounts must differ");
+        }
         withdraw(fromPlayerId, type, amount);
         deposit(toPlayerId, type, amount);
     }

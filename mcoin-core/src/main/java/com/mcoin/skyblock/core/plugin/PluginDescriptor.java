@@ -100,12 +100,18 @@ public final class PluginDescriptor {
         }
 
         public Builder databaseModes(final Set<DatabaseMode> databaseModes) {
-            this.databaseModes = EnumSet.copyOf(Objects.requireNonNull(databaseModes, "databaseModes"));
+            Objects.requireNonNull(databaseModes, "databaseModes");
+            this.databaseModes = databaseModes.isEmpty()
+                ? EnumSet.noneOf(DatabaseMode.class)
+                : EnumSet.copyOf(databaseModes);
             return this;
         }
 
         public Builder featureAreas(final Set<FeatureArea> featureAreas) {
-            this.featureAreas = EnumSet.copyOf(Objects.requireNonNull(featureAreas, "featureAreas"));
+            Objects.requireNonNull(featureAreas, "featureAreas");
+            this.featureAreas = featureAreas.isEmpty()
+                ? EnumSet.noneOf(FeatureArea.class)
+                : EnumSet.copyOf(featureAreas);
             return this;
         }
 

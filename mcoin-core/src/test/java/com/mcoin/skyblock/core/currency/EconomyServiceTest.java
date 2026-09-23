@@ -32,4 +32,14 @@ class EconomyServiceTest {
         assertThrows(IllegalArgumentException.class,
             () -> service.withdraw(player, CurrencyType.LIDYA, new BigDecimal("11")));
     }
+
+    @Test
+    void rejectsSelfTransfers() {
+        EconomyService service = new EconomyService();
+        UUID player = UUID.randomUUID();
+        service.deposit(player, CurrencyType.MCOIN, new BigDecimal("10"));
+
+        assertThrows(IllegalArgumentException.class,
+            () -> service.transfer(player, player, CurrencyType.MCOIN, new BigDecimal("1")));
+    }
 }
