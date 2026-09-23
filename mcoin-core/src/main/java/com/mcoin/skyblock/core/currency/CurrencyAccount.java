@@ -18,6 +18,15 @@ public final class CurrencyAccount {
         }
     }
 
+    public static CurrencyAccount copyOf(final CurrencyAccount account) {
+        Objects.requireNonNull(account, "account");
+        synchronized (account) {
+            CurrencyAccount copy = new CurrencyAccount(account.playerId);
+            copy.balances.putAll(account.balances);
+            return copy;
+        }
+    }
+
     public UUID getPlayerId() {
         return playerId;
     }

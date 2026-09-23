@@ -81,4 +81,17 @@ class EconomyServiceTest {
         assertEquals(BigDecimal.ZERO, service.account(firstPlayer).getBalance(CurrencyType.MCOIN));
         assertEquals(new BigDecimal("10"), service.account(secondPlayer).getBalance(CurrencyType.MCOIN));
     }
+
+    @Test
+    void snapshotReturnsDetachedAccounts() {
+        EconomyService service = new EconomyService();
+        UUID player = UUID.randomUUID();
+        service.deposit(player, CurrencyType.LIDYA, new BigDecimal("50"));
+
+        CurrencyAccount snapshotAccount = service.snapshot().get(player);
+        snapshotAccount.withdraw(CurrencyType.LIDYA, new BigDecimal("10"));
+
+        assertEquals(new BigDecimal("50"), service.account(player).getBalance(CurrencyType.LIDYA));
+        assertEquals(new BigDecimal("40"), snapshotAccount.getBalance(CurrencyType.LIDYA));
+    }
 }

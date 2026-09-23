@@ -25,6 +25,19 @@ public final class IslandProfile {
         this.members.put(ownerId, IslandMemberRole.OWNER);
     }
 
+    public static IslandProfile copyOf(final IslandProfile islandProfile) {
+        Objects.requireNonNull(islandProfile, "islandProfile");
+        synchronized (islandProfile) {
+            IslandProfile copy = new IslandProfile(islandProfile.islandId, islandProfile.ownerId, islandProfile.biome);
+            copy.homeWarp = islandProfile.homeWarp;
+            copy.size = islandProfile.size;
+            copy.level = islandProfile.level;
+            copy.members.clear();
+            copy.members.putAll(islandProfile.members);
+            return copy;
+        }
+    }
+
     public UUID getIslandId() {
         return islandId;
     }

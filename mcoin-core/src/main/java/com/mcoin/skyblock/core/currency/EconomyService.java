@@ -37,6 +37,10 @@ public final class EconomyService {
     }
 
     public synchronized Map<UUID, CurrencyAccount> snapshot() {
-        return Collections.unmodifiableMap(new LinkedHashMap<UUID, CurrencyAccount>(accounts));
+        Map<UUID, CurrencyAccount> copy = new LinkedHashMap<UUID, CurrencyAccount>(accounts.size());
+        for (Map.Entry<UUID, CurrencyAccount> entry : accounts.entrySet()) {
+            copy.put(entry.getKey(), CurrencyAccount.copyOf(entry.getValue()));
+        }
+        return Collections.unmodifiableMap(copy);
     }
 }

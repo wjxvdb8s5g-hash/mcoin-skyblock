@@ -56,7 +56,11 @@ public final class IslandService {
     }
 
     public synchronized Map<UUID, IslandProfile> snapshot() {
-        return Collections.unmodifiableMap(new LinkedHashMap<UUID, IslandProfile>(islands));
+        Map<UUID, IslandProfile> copy = new LinkedHashMap<UUID, IslandProfile>(islands.size());
+        for (Map.Entry<UUID, IslandProfile> entry : islands.entrySet()) {
+            copy.put(entry.getKey(), IslandProfile.copyOf(entry.getValue()));
+        }
+        return Collections.unmodifiableMap(copy);
     }
 
     private synchronized IslandProfile requireIsland(final UUID islandId) {

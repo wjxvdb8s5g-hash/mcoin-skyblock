@@ -37,4 +37,21 @@ class IslandServiceTest {
 
         assertThrows(IllegalArgumentException.class, () -> service.createIsland(owner, "FOREST"));
     }
+
+    @Test
+    void snapshotReturnsDetachedIslandProfiles() {
+        IslandService service = new IslandService();
+        UUID owner = UUID.randomUUID();
+        UUID member = UUID.randomUUID();
+        IslandProfile island = service.createIsland(owner, "PLAINS");
+        service.addCoopMember(island.getIslandId(), member);
+
+        IslandProfile snapshotProfile = service.snapshot().get(island.getIslandId());
+        snapshotProfile.setBiome("JUNGLE");
+        snapshotProfile.removeMember(member);
+
+        IslandProfile liveProfile = service.findByIslandId(island.getIslandId()).get();
+        assertEquals("PLAINS", liveProfile.getBiome());
+        assertEquals(IslandMemberRole.COOP, liveProfile.getMembers().get(member));
+    }
 }
