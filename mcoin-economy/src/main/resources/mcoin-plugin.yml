@@ -1,0 +1,8 @@
+name: MCoinEconomy
+display-name: MCoin Economy
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [ECONOMY]
+commands: [mcoin, lidya, shop, trade, auction, bank, market]
+capabilities: [premium-currency, in-game-currency, npc-shop, player-trading, auction-house, bank-vaults, player-market]

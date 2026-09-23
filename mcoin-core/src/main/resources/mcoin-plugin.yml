@@ -1,0 +1,7 @@
+name: MCoinCore
+display-name: MCoin Core
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [CORE, UTILITY]
+commands: [mcoincore, mcoinadmin]
+capabilities: [shared-api, configuration, database-support, module-registry, admin-panel-hooks]

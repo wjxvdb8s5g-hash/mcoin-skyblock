@@ -1,0 +1,8 @@
+name: MCoinFarming
+display-name: MCoin Farming
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [FARMING]
+commands: [farm, crop, minion]
+capabilities: [farm-blocks, crop-management, minion-automation, auto-harvest, farming-skill]
