@@ -10,7 +10,7 @@ import java.util.UUID;
 public final class EconomyService {
     private final Map<UUID, CurrencyAccount> accounts = new LinkedHashMap<UUID, CurrencyAccount>();
 
-    public CurrencyAccount account(final UUID playerId) {
+    public synchronized CurrencyAccount account(final UUID playerId) {
         final UUID safePlayerId = Objects.requireNonNull(playerId, "playerId");
         CurrencyAccount account = accounts.get(safePlayerId);
         if (account == null) {
@@ -20,15 +20,15 @@ public final class EconomyService {
         return account;
     }
 
-    public void deposit(final UUID playerId, final CurrencyType type, final BigDecimal amount) {
+    public synchronized void deposit(final UUID playerId, final CurrencyType type, final BigDecimal amount) {
         account(playerId).deposit(type, amount);
     }
 
-    public void withdraw(final UUID playerId, final CurrencyType type, final BigDecimal amount) {
+    public synchronized void withdraw(final UUID playerId, final CurrencyType type, final BigDecimal amount) {
         account(playerId).withdraw(type, amount);
     }
 
-    public void transfer(final UUID fromPlayerId, final UUID toPlayerId, final CurrencyType type, final BigDecimal amount) {
+    public synchronized void transfer(final UUID fromPlayerId, final UUID toPlayerId, final CurrencyType type, final BigDecimal amount) {
         if (Objects.requireNonNull(fromPlayerId, "fromPlayerId").equals(Objects.requireNonNull(toPlayerId, "toPlayerId"))) {
             throw new IllegalArgumentException("source and destination accounts must differ");
         }
@@ -36,7 +36,7 @@ public final class EconomyService {
         deposit(toPlayerId, type, amount);
     }
 
-    public Map<UUID, CurrencyAccount> snapshot() {
+    public synchronized Map<UUID, CurrencyAccount> snapshot() {
         return Collections.unmodifiableMap(new LinkedHashMap<UUID, CurrencyAccount>(accounts));
     }
 }

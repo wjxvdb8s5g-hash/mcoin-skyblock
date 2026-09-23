@@ -33,53 +33,53 @@ public final class IslandProfile {
         return ownerId;
     }
 
-    public Map<UUID, IslandMemberRole> getMembers() {
-        return Collections.unmodifiableMap(members);
+    public synchronized Map<UUID, IslandMemberRole> getMembers() {
+        return Collections.unmodifiableMap(new LinkedHashMap<UUID, IslandMemberRole>(members));
     }
 
-    public String getBiome() {
+    public synchronized String getBiome() {
         return biome;
     }
 
-    public void setBiome(final String biome) {
+    public synchronized void setBiome(final String biome) {
         this.biome = requireText(biome, "biome");
     }
 
-    public String getHomeWarp() {
+    public synchronized String getHomeWarp() {
         return homeWarp;
     }
 
-    public void setHomeWarp(final String homeWarp) {
+    public synchronized void setHomeWarp(final String homeWarp) {
         this.homeWarp = requireText(homeWarp, "homeWarp");
     }
 
-    public int getSize() {
+    public synchronized int getSize() {
         return size;
     }
 
-    public void expand(final int blocks) {
+    public synchronized void expand(final int blocks) {
         if (blocks <= 0) {
             throw new IllegalArgumentException("blocks must be positive");
         }
         this.size += blocks;
     }
 
-    public int getLevel() {
+    public synchronized int getLevel() {
         return level;
     }
 
-    public void upgradeLevel(final int levels) {
+    public synchronized void upgradeLevel(final int levels) {
         if (levels <= 0) {
             throw new IllegalArgumentException("levels must be positive");
         }
         this.level += levels;
     }
 
-    public void setMemberRole(final UUID playerId, final IslandMemberRole role) {
+    public synchronized void setMemberRole(final UUID playerId, final IslandMemberRole role) {
         members.put(Objects.requireNonNull(playerId, "playerId"), Objects.requireNonNull(role, "role"));
     }
 
-    public void removeMember(final UUID playerId) {
+    public synchronized void removeMember(final UUID playerId) {
         if (ownerId.equals(playerId)) {
             throw new IllegalArgumentException("owner cannot be removed");
         }

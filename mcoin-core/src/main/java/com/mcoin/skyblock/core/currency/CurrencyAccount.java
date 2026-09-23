@@ -21,15 +21,15 @@ public final class CurrencyAccount {
         return playerId;
     }
 
-    public BigDecimal getBalance(final CurrencyType type) {
+    public synchronized BigDecimal getBalance(final CurrencyType type) {
         return balances.get(requireType(type));
     }
 
-    public void deposit(final CurrencyType type, final BigDecimal amount) {
+    public synchronized void deposit(final CurrencyType type, final BigDecimal amount) {
         balances.put(requireType(type), getBalance(type).add(requireAmount(amount)));
     }
 
-    public void withdraw(final CurrencyType type, final BigDecimal amount) {
+    public synchronized void withdraw(final CurrencyType type, final BigDecimal amount) {
         final CurrencyType safeType = requireType(type);
         final BigDecimal safeAmount = requireAmount(amount);
         if (getBalance(safeType).compareTo(safeAmount) < 0) {
@@ -38,7 +38,7 @@ public final class CurrencyAccount {
         balances.put(safeType, getBalance(safeType).subtract(safeAmount));
     }
 
-    public Map<CurrencyType, BigDecimal> balancesView() {
+    public synchronized Map<CurrencyType, BigDecimal> balancesView() {
         return new EnumMap<CurrencyType, BigDecimal>(balances);
     }
 
