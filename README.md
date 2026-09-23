@@ -5,7 +5,7 @@ Modular MCoin Skyblock package foundation inspired by premium Turkish Skyblock s
 ## Included modules
 
 - `MCoinCore` - shared API, configuration, database mode metadata and module registry
-- `MCoinEconomy` - MCOIN premium currency and Lidya in-game economy metadata
+- `MCoinEconomy` - MCOIN premium currency and Lidya in-game economy metadata plus bank, server shop and player trade services
 - `MCoinIsland` - island creation, co-op, biome, home and upgrade metadata
 - `MCoinSpawner` - spawner catalog, stacking, upgrades and drop metadata
 - `MCoinProgression` - VIP rank, prestige, skill, mastery, achievement and XP metadata
@@ -26,4 +26,4 @@ mvn test
 
 ## Notes
 
-This repository started empty. The current change establishes a tested, Java 8 compatible multi-module foundation with shared MCOIN/Lidya economy primitives, island management primitives, and per-system module descriptors for future Bukkit/Paper adapters.
+This repository started empty. The current build now includes a tested, Java 8 compatible multi-module foundation with shared MCOIN/Lidya economy primitives, detached snapshot support, island management primitives, and concrete economy services for bank, server shop, and player trading flows.
