@@ -1,0 +1,8 @@
+name: MCoinUtility
+display-name: MCoin Utility
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [UTILITY]
+commands: [home, warp, region, cleanup, mcoinadmin]
+capabilities: [home-system, warp-system, region-protection, lag-prevention, admin-controls]

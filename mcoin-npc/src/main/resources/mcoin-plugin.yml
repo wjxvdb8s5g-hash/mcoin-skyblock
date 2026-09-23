@@ -1,0 +1,8 @@
+name: MCoinNPC
+display-name: MCoin NPC
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [NPC]
+commands: [npc, dialogue]
+capabilities: [npc-creation, npc-shops, dialogue-system, quest-givers]

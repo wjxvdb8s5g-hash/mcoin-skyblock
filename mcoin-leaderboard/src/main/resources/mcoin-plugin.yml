@@ -1,0 +1,8 @@
+name: MCoinLeaderboard
+display-name: MCoin Leaderboard
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [LEADERBOARD]
+commands: [leaderboard, top, stats]
+capabilities: [island-rankings, player-statistics, seasonal-rankings, achievement-progress]
