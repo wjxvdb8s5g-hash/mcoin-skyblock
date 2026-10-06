@@ -1,0 +1,8 @@
+name: MCoinPet
+display-name: MCoin Pet
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [PET]
+commands: [pet, companion, pet market]
+capabilities: [pet-types, pet-leveling, pet-skills, companions, pet-marketplace]

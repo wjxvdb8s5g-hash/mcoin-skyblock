@@ -1,0 +1,8 @@
+name: MCoinSpawner
+display-name: MCoin Spawner
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [SPAWNER]
+commands: [spawner, spawner shop, spawner upgrade]
+capabilities: [spawner-types-22+, spawner-stacking, mob-drops, spawner-upgrades, spawner-eggs]
