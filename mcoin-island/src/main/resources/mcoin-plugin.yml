@@ -1,0 +1,8 @@
+name: MCoinIsland
+display-name: MCoin Island
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [ISLAND]
+commands: [island, is home, is biome, is coop, is upgrade]
+capabilities: [island-creation, island-expansion, island-levels, coop-membership, biome-switching, home-teleport-state]

@@ -1,0 +1,8 @@
+name: MCoinEvents
+display-name: MCoin Events
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [EVENTS]
+commands: [event, boss]
+capabilities: [event-scheduling, seasonal-events, holiday-events, boss-battles]
