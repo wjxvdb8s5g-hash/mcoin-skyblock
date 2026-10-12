@@ -1,0 +1,8 @@
+name: MCoinQuest
+display-name: MCoin Quest
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [QUEST]
+commands: [quest, daily, weekly, bounty, challenge]
+capabilities: [daily-quests, weekly-quests, special-missions, bounties, quest-rewards, quest-leaderboards]

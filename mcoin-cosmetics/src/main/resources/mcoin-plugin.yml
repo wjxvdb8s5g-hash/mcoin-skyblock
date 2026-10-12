@@ -1,0 +1,8 @@
+name: MCoinCosmetics
+display-name: MCoin Cosmetics
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [COSMETICS]
+commands: [cosmetics, particles, emotes]
+capabilities: [particle-effects, pet-cosmetics, emotes, visual-customization]

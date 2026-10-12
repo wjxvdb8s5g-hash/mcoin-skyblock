@@ -1,0 +1,8 @@
+name: MCoinProgression
+display-name: MCoin Progression
+core-plugin: MCoinCore
+minecraft-range: 1.8.x-1.21.x
+databases: [SQLITE, MYSQL]
+features: [PROGRESSION]
+commands: [rank, prestige, skills, mastery, achievements, xp]
+capabilities: [vip-ranks, prestige-system, skill-leveling, mastery-tracks, achievement-tracking, experience-leveling]
