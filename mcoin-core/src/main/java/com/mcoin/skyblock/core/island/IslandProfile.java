@@ -77,6 +77,13 @@ public final class IslandProfile {
         this.size += blocks;
     }
 
+    public synchronized void setSize(final int size) {
+        if (size <= 0) {
+            throw new IllegalArgumentException("size must be positive");
+        }
+        this.size = size;
+    }
+
     public synchronized int getLevel() {
         return level;
     }
@@ -86,6 +93,13 @@ public final class IslandProfile {
             throw new IllegalArgumentException("levels must be positive");
         }
         this.level += levels;
+    }
+
+    public synchronized void setLevel(final int level) {
+        if (level <= 0) {
+            throw new IllegalArgumentException("level must be positive");
+        }
+        this.level = level;
     }
 
     public synchronized void setMemberRole(final UUID playerId, final IslandMemberRole role) {

@@ -35,6 +35,14 @@ public final class CurrencyAccount {
         return balances.get(requireType(type));
     }
 
+    public synchronized void setBalance(final CurrencyType type, final BigDecimal balance) {
+        Objects.requireNonNull(balance, "balance");
+        if (balance.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("balance cannot be negative");
+        }
+        balances.put(requireType(type), balance);
+    }
+
     public synchronized void deposit(final CurrencyType type, final BigDecimal amount) {
         balances.put(requireType(type), getBalance(type).add(requireAmount(amount)));
     }

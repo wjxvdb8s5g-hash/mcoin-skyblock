@@ -46,6 +46,11 @@ public final class TradeService {
         requireSession(sessionId).confirm(playerId);
     }
 
+    public synchronized void cancel(final UUID sessionId) {
+        requireSession(sessionId);
+        sessions.remove(sessionId);
+    }
+
     public synchronized TradeSession execute(final UUID sessionId) {
         TradeSession session = requireSession(sessionId);
         if (!session.isReady()) {

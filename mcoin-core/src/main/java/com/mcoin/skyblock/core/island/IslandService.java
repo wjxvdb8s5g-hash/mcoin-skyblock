@@ -22,6 +22,12 @@ public final class IslandService {
         return profile;
     }
 
+    public synchronized void registerIsland(final IslandProfile profile) {
+        final IslandProfile safeProfile = Objects.requireNonNull(profile, "profile");
+        islands.put(safeProfile.getIslandId(), safeProfile);
+        owners.put(safeProfile.getOwnerId(), safeProfile.getIslandId());
+    }
+
     public synchronized Optional<IslandProfile> findByIslandId(final UUID islandId) {
         return Optional.ofNullable(islands.get(islandId));
     }
